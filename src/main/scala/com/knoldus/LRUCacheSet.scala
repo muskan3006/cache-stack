@@ -11,8 +11,7 @@ class LRUCacheset(capacity: Int, hashSet: mutable.LinkedHashSet[String]) {
       hashSet
     } else {
       if (hashSet.size == capacity) {
-        val lruElement = hashSet.head
-        hashSet.remove(lruElement)
+        hashSet.remove(hashSet.head)
         hashSet.add(page)
         hashSet
       } else {

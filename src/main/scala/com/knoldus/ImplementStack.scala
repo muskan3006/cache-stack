@@ -6,7 +6,7 @@ class ImplementStack private(list: List[Int], var minEle: Option[List[Int]]) {
 
   def getMin: Int = {
     // Get the minimum number in the entire stack
-    if (list.nonEmpty) minEle.get.head else throw new NoSuchElementException
+    if (list.nonEmpty) minEle.get.head else Int.MinValue
   }
 
   // Removes the top element from Stack

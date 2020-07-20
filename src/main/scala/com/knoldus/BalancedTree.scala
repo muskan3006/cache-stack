@@ -29,8 +29,7 @@ class BalancedTree {
   def getLeafNodes(binaryTree: BinaryTree):List[Int] = {
     def inner(binaryTree: BinaryTree,list: List[Int]):List[Int]={
     binaryTree match {
-      case BinaryTree(_, Some(left), Some(right)) =>  inner(right,list)
-        inner(left,list)
+      case BinaryTree(_, Some(left), Some(right)) =>  inner(right,list) ::: inner(left,list)
       case BinaryTree(_, Some(left), None) => inner(left,list)
       case BinaryTree(_, None, Some(right)) => inner(right,list)
       case BinaryTree(data, None, None) => data :: list
@@ -61,12 +60,15 @@ object TreeHeight extends App {
   val c = new BalancedTree
   //  val tree = BinaryTree(5, Some(BinaryTree(6, Some(BinaryTree(8, Some(BinaryTree(9, None, None)), None)), None)), Some(BinaryTree(7, None, None)))
   val t = BinaryTree(5, None, Some(BinaryTree(7, None, None)))
-val trr = BinaryTree(0,Some(BinaryTree(1,None,None)),Some(BinaryTree(3,None,None)))
+val trr = BinaryTree(0,Some(BinaryTree(1,None,None)),None)
   val tree = Tree(5, Some(List(Tree(4, None), Tree(5, None), Tree(6, None))))
   val tr = BinaryTree(1, Some(BinaryTree(0, None, None)), None)
   val tree2 = Tree(7, Some(List(tree, tree, tree, Tree(111, Some(List(tree, tree, tree, tree))))))
   val treee = BinaryTree(1, Some(BinaryTree(0, Some(BinaryTree(1, Some(BinaryTree(1, None, None)), None)), None)),
     Some(BinaryTree(0, Some(BinaryTree(1, Some(BinaryTree(0, None, None)), None)), None)))
-  println(c.getLeafNodes(trr))
+
+  val newTree = BinaryTree(1,Some(BinaryTree(2,Some(BinaryTree(3,None,None)),Some(BinaryTree(4,None,None)))),
+    Some(BinaryTree(5,Some(BinaryTree(6,None,None)),Some(BinaryTree(7,None,None)))))
+  println(c.getLeafNodes(newTree))
 
 }
